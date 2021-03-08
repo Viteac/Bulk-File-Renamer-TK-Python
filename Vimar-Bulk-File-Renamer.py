@@ -15,8 +15,8 @@ root = Tk()
 root.title('Vimart-Bulk File Renamer 1.0')
 root.resizable(0,0)
 
-canvas=Canvas(root, bg='#06090f', width=960, height=540, bd =10)
-canvas.grid(column=0,row=0)
+canvas = Canvas(root, bg='#06090f', width=960, height=540, bd =10)
+canvas.grid(column=0, row=0)
 backg = '#06090f'
 
 
@@ -37,20 +37,23 @@ def me():
     link1 = Label(new, text="\nWebsite", fg="red", bg=backg, cursor="hand2")
     link1.grid(column=0,row=4)
     link1.bind("<Button-1>", lambda e: callback("http://www.viteac.blogspot.com"))
-    napi5 = Label(new, text='\n Copy right © 2020 Marcin Witkowski  ', bg=backg, fg='white', font=('Ubuntu', 12)).grid(column=0, row=5)
+    napi5 = Label(new, text='\n Copy right © 2021 Marcin Witkowski  ', bg=backg, fg='white', font=('Ubuntu', 12)).grid(column=0, row=5)
 
 
 def direct():
     print(file_path.get())
     print(os.path.isdir(file_path.get()))
     if os.path.isdir(file_path.get()):
-        l = filedialog.askdirectory(title='Move files to', initialdir=file_path.get())
+        l = filedialog.askdirectory(title='Move files to:', initialdir=file_path.get())
     else:
         l = filedialog.askdirectory(title='Move files to', initialdir=os.path.expanduser('~'))
         file_path.delete(0,END)
         file_path.insert(0,l)
 
     folder_path.set(l)
+    # ---------
+    file_path.delete(0,END)
+    file_path.insert(0,l)
 
 
 def rename():
@@ -142,11 +145,13 @@ def forget():
 
 def callbackFunc(n):
     brocha.set(n)
+    print(f'brioszka>>>{brocha.get()}')
+
 
     if brr == 0 or brr == -1:
         forget()
 
-    print(ext_choosen.current())
+    print(f'current: {ext_choosen.current()}')
     if ext_choosen.current() > 0:
         dsa.grid(row=4, column=1)
         c.grid(row=4, column=0)
